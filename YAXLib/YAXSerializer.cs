@@ -1050,14 +1050,14 @@ namespace YAXLib
                 else // if it has a prefix assigned
                 {
                     // if no namespace with this prefix already exists
-                    if (rootNode.GetNamespaceOfPrefix(prefix) == null)
+                    var existing = rootNode.GetNamespaceOfPrefix(prefix);
+                    if (existing == null || String.IsNullOrEmpty(existing.ToString()))
                     {
                         rootNode.AddAttributeNamespaceSafe(XNamespace.Xmlns + prefix, ns, m_documentDefaultNamespace);
                     }
                     else // if this prefix is already added
                     {
                         // check the namespace associated with this prefix
-                        var existing = rootNode.GetNamespaceOfPrefix(prefix);
                         if (existing != ns)
                             throw new InvalidOperationException(String.Format("You cannot have two different namespaces with the same prefix." + 
                                 Environment.NewLine + 

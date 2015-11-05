@@ -688,7 +688,7 @@ namespace YAXLib
         private void InitDefaultValue()
         {
             if(MemberType.IsValueType)
-                DefaultValue = MemberType.InvokeMember(string.Empty, BindingFlags.CreateInstance, null, null, new object[0]);
+                DefaultValue = Activator.CreateInstance(MemberType);
             else
                 DefaultValue = null;
         }
